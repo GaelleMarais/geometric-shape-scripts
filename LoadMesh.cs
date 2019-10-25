@@ -4,15 +4,15 @@ using UnityEngine;
 using System.Globalization;
 using System;
 
-public class Load : MonoBehaviour
+public class LoadMesh : MonoBehaviour
 {
     public Material mat;
 
     private Vector3 center;
-    // Start is called before the first frame update
+
     void Start()
     {
-        gameObject.AddComponent<MeshFilter>();          // Creation d'un composant MeshFilter qui peut ensuite être visualisé
+        gameObject.AddComponent<MeshFilter>();
         gameObject.AddComponent<MeshRenderer>();
 
         String[] lines = System.IO.File.ReadAllLines(@"Assets/triceratops.off");
@@ -66,23 +66,17 @@ public class Load : MonoBehaviour
         }
 
 
-        Mesh msh = new Mesh();    // Création et remplissage du Mesh
+        Mesh msh = new Mesh();
 
         msh.vertices = vertices;
         msh.triangles = index;
-        gameObject.GetComponent<MeshFilter>().mesh = msh;           // Remplissage du Mesh et ajout du matériel
+        gameObject.GetComponent<MeshFilter>().mesh = msh;
         gameObject.GetComponent<MeshRenderer>().material = mat;
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(center, 0.25f);
+        //Gizmos.DrawSphere(center, 0.25f);
     }
 }
